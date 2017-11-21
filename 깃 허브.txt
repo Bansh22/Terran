@@ -1,0 +1,406 @@
+7-1
+import java.util.*;
+
+public class abc {
+
+    public static void main(String[] args) {
+        Vector<Integer> v = new Vector<Integer>();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("6개의 학점음 빈 칸으로 분리 입력"
+                + "(A/B/C/D/F)>>");
+        for(int i= 0;i<6;i++) {// v.size 로 크기 넣음 
+            String m = scanner.next();
+            int num = m.charAt(0); // String-> char -> 정수형
+
+            switch(num) { //char 로 받은 정수형 값 정리
+            case 65: 
+                num = 4; 
+                break;
+            case 66: 
+                num = 3; 
+                break;
+            case 67:
+                num = 2;
+                break;
+            case 68: 
+                num = 1; 
+                break;
+            case 70:
+                num = 0;
+                break;
+           default : 
+                break;
+       }
+           v.add(num);
+       }
+       int sum =0; // 합 sum
+       for(int i =0;i<v.size();i++) {
+           int n = v.elementAt(i);
+
+           sum = sum + n;
+       }
+       System.out.println((float)sum/v.size()); // 결과에 계산하여 출력
+
+
+    }
+}
+7-2
+import java.util.*;
+public class saf {
+
+   public static void main(String[] args) {
+       HashMap<String,Integer> a = new HashMap<String,Integer>();
+       Scanner scanner = new Scanner(System.in);
+       String stop = "그만"; // 초기값 지정
+       System.out.println("나라이름과 인구를 10개 입력하세요.(예 Korea 5000)"); 
+       while(true) {
+          System.out.print("나라이름, 인구>>");
+          String c = scanner.next(); 
+          if(c.equals(stop)) // 그만 이면 멈춘다
+              break;
+          Integer b = scanner.nextInt(); 
+          a.put(c,b);
+       }
+       while(true) {
+           System.out.print("인구 검색>>");
+           String d = scanner.next(); 
+           if(d.equals(stop)) // 그만 이면 멈춘다
+               break; 
+           int num=0;
+
+           try { // 없는 나라 검색시 생기는 에러 처리를 위한 try catch 문 
+           num = a.get(d);
+           System.out.println(d+"의 인구는"+num);
+           }
+           catch(NullPointerException e) {
+               System.out.println(d+"나라는 없습니다");
+
+           }
+
+
+       }
+
+   }
+
+}
+7-3
+import java.util.*;
+
+public class abc {
+
+	public static void main(String[] args) {
+		Vector<Integer> v = new Vector<Integer>();
+		Scanner scanner = new Scanner(System.in);
+		int x;
+		int sum=0;
+		
+		while(true) {
+			System.out.print("강수량 입력 (0입력시 종료) >>");
+			x= scanner.nextInt();
+			if(x==0)  // 0 일경우 종료
+				break;
+			v.add(x);
+			for(int i =0;i<v.size();i++) { // 벡터안의 값을 출력
+				System.out.print(v.get(i)+" ");
+			}
+			System.out.println();
+			
+			sum= sum+x;
+			System.out.println("현재 평균"+(float)sum/v.size()); // 결과에 계산하여 출력
+			
+			
+		}
+		
+		
+
+	}
+
+}
+
+7-4
+import java.util.*;
+class Student{
+	public String name;
+	public String acr;
+	public int num;
+	public double score;
+	public Student() {
+	} 
+}
+public class atob {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		ArrayList<Student> Stu = new ArrayList<Student>();
+		String stop = "그만"; // 초기값 지정
+		String line = null;
+		Student a[]=  new Student[4];
+		String st[] =new String[4];
+		System.out.println("학생 이름과, 학과, 학번, 학점평균 입력하세요");
+		for(int i =0;i<4;i++) {
+			a[i]= new Student();
+			System.out.print(">>");
+			String b=scanner.nextLine();
+			StringTokenizer tok = new StringTokenizer(b,",");//토큰으로 절단
+			int count =tok.countTokens();
+			for(int j=0;j<count;j++) {
+				st[j]=tok.nextToken();
+			}
+			int x = (int) Double.parseDouble(st[2]);
+			double y = Double.parseDouble(st[3]);
+			a[i].name=st[0]; //입력
+			a[i].acr=st[1];
+			a[i].num=x;
+			a[i].score=y;
+			Stu.add(a[i]);
+		}
+		for(int i =0;i<4;i++) {
+			System.out.println("----------------------------");
+			System.out.println("이름:" +Stu.get(i).name); //출력
+			System.out.println("학과:" +Stu.get(i).acr);
+			System.out.println("학번:" +Stu.get(i).num);
+			System.out.println("학점평균:" +Stu.get(i).score);
+		}
+		while(true) {
+			System.out.print("학생이름 >> ");
+			line = scanner.nextLine();
+			int c =0;
+			for(int i = 0;i<4;i++) {
+				if(Stu.get(i).name.equals(line)) {
+					System.out.println(line+","+Stu.get(i).acr+","+Stu.get(i).num+","+Stu.get(i).score);
+					c++;
+				}
+			}
+			if(c == 0)
+				System.out.println(line+"이라는 사람은 없습니다");
+			if(line.equals(stop)) // 그만 이면 멈춘다
+				break;
+			c=0;
+		}
+	}
+}
+
+7-5
+
+10-1
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("Love Java");
+	
+	public abc() {
+		setTitle("마우스 올리고 내리기");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(new FlowLayout()); //기본 배치
+		c.add(la);
+		la.addMouseListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,150);
+		setVisible(true);
+	}
+	class onoffListener implements MouseListener { //오버 라이딩
+		public void mouseClicked(MouseEvent arg0) {
+		}
+		public void mouseEntered(MouseEvent e) {
+			JLabel a = (JLabel)e.getSource();
+			a.setText("사랑해");
+		}
+		public void mouseExited(MouseEvent e) {
+			JLabel a = (JLabel)e.getSource();
+			a.setText("Love Java");
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {			
+		}
+	}
+	
+	public static void main(String[] args) {
+		new abc();
+	}
+
+}
+
+10-2
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public abc() {
+		setTitle("드래깅동안 YELLOW");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(new FlowLayout()); //기본 배치
+		
+		c.addMouseMotionListener(new onoffListener()); // 라벨에 모션 추가
+		c.addMouseListener(new overMouse());
+		setSize(300,150);
+		c.setBackground(Color.GREEN);
+		setVisible(true);
+	}
+	class overMouse implements MouseListener { //오버 라이딩
+		public void mouseClicked(MouseEvent arg0) {
+		}
+		public void mouseEntered(MouseEvent e) {
+		}
+		public void mouseExited(MouseEvent e) {
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {	
+			Component c =(Component)e.getSource();
+			c.setBackground(Color.GREEN);
+		}
+	}
+	class onoffListener implements MouseMotionListener {
+		public void mouseDragged(MouseEvent e) {
+			Component c =(Component)e.getSource();
+			c.setBackground(Color.YELLOW);
+		}
+		public void mouseMoved(MouseEvent e) {
+		} //오버 라이딩
+		
+	}
+	
+	public static void main(String[] args) {
+		new abc();
+	}
+
+}
+10-3
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("Love Java");
+	public abc() {
+		setTitle("Left기로 문자열 이동");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(new FlowLayout()); //기본 배치
+		c.add(la);
+		la.addKeyListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,150);
+		setVisible(true);
+		la.setFocusable(true); // la 에 포커스
+		la.requestFocus();
+	}
+	class onoffListener implements KeyListener { //오버 라이딩
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode()==KeyEvent.VK_LEFT) { // 왼쪽일때 켜짐
+				JLabel a = (JLabel)e.getSource();
+				String o = a.getText();
+				String t = o.substring(0,1);
+				String th = o.substring(1);
+				String f = th+ t;
+				a.setText(f); //삽입
+			}
+			
+		}
+		public void keyReleased(KeyEvent arg0) {
+		}
+		public void keyTyped(KeyEvent arg0) {
+		}
+	}
+	public static void main(String[] args) {
+		new abc();
+	}
+}
+
+10-4
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("Love Java");
+	
+	public abc() {
+		setTitle("+,-키로 폰트 크기 조절");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(new FlowLayout()); //기본 배치
+		la.setFont(new Font("Arial",Font.PLAIN, 10)); // 기본 폰트
+		c.add(la);
+		la.addKeyListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,150);
+		setVisible(true);
+		la.setFocusable(true); // la 에 포커스
+		la.requestFocus();
+	}
+	class onoffListener implements KeyListener { //오버 라이딩
+		public void keyPressed(KeyEvent e) {
+			JLabel a = (JLabel)e.getSource();
+			Font f = la.getFont();
+			int size =  f.getSize();
+			if(e.getKeyCode()==107) { // +일때 커짐
+				size= size+5;
+				a.setFont(new Font("Arial",Font.PLAIN, size));
+			}
+			if( (size>5) && (e.getKeyCode()==109)) { // - 일때 작아짐
+				size= size-5;
+				a.setFont(new Font("Arial",Font.PLAIN, size));
+			}
+		}
+		public void keyReleased(KeyEvent arg0) {
+		}
+		public void keyTyped(KeyEvent arg0) {
+		}
+	}
+	public static void main(String[] args) {
+		new abc();
+	}
+}
+
+10-5
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("c");
+	
+	public abc() {
+		setTitle("클릭 연습용 크로그램");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(null); //기본 배치
+		la.setLocation(100,100); //처음 라벨의 위치와 크기 설정
+		la.setSize(20,20);
+		c.add(la);
+		
+		la.addMouseListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,300);
+		setVisible(true);
+	}
+	class onoffListener implements MouseListener { //오버 라이딩
+		
+		public void mouseClicked(MouseEvent e) { // 누르면 실행
+			JLabel a = (JLabel)e.getSource();
+			int x = (int)(Math.random()*300);
+			int y = (int)(Math.random()*300);
+			a.setLocation(x,y);
+			
+		}
+		public void mouseEntered(MouseEvent e) {
+		
+		}
+		public void mouseExited(MouseEvent e) {
+			
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {			
+		}
+	}
+	
+	public static void main(String[] args) {
+		new abc();
+	}
+
+}
+
