@@ -1,0 +1,39 @@
+7-2
+import java.util.*;
+public class saf {
+
+   public static void main(String[] args) {
+       HashMap<String,Integer> a = new HashMap<String,Integer>();
+       Scanner scanner = new Scanner(System.in);
+       String stop = "그만"; // 초기값 지정
+       System.out.println("나라이름과 인구를 10개 입력하세요.(예 Korea 5000)"); 
+       while(true) {
+          System.out.print("나라이름, 인구>>");
+          String c = scanner.next(); 
+          if(c.equals(stop)) // 그만 이면 멈춘다
+              break;
+          Integer b = scanner.nextInt(); 
+          a.put(c,b);
+       }
+       while(true) {
+           System.out.print("인구 검색>>");
+           String d = scanner.next(); 
+           if(d.equals(stop)) // 그만 이면 멈춘다
+               break; 
+           int num=0;
+
+           try { // 없는 나라 검색시 생기는 에러 처리를 위한 try catch 문 
+           num = a.get(d);
+           System.out.println(d+"의 인구는"+num);
+           }
+           catch(NullPointerException e) {
+               System.out.println(d+"나라는 없습니다");
+
+           }
+
+
+       }
+
+   }
+
+}

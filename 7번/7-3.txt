@@ -1,0 +1,33 @@
+7-3
+import java.util.*;
+
+public class abc {
+
+	public static void main(String[] args) {
+		Vector<Integer> v = new Vector<Integer>();
+		Scanner scanner = new Scanner(System.in);
+		int x;
+		int sum=0;
+		
+		while(true) {
+			System.out.print("강수량 입력 (0입력시 종료) >>");
+			x= scanner.nextInt();
+			if(x==0)  // 0 일경우 종료
+				break;
+			v.add(x);
+			for(int i =0;i<v.size();i++) { // 벡터안의 값을 출력
+				System.out.print(v.get(i)+" ");
+			}
+			System.out.println();
+			
+			sum= sum+x;
+			System.out.println("현재 평균"+(float)sum/v.size()); // 결과에 계산하여 출력
+			
+			
+		}
+		
+		
+
+	}
+
+}

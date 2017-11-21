@@ -1,0 +1,48 @@
+7-1
+
+import java.util.*;
+
+public class abc {
+
+    public static void main(String[] args) {
+        Vector<Integer> v = new Vector<Integer>();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("6개의 학점음 빈 칸으로 분리 입력"
+                + "(A/B/C/D/F)>>");
+        for(int i= 0;i<6;i++) {// v.size 로 크기 넣음 
+            String m = scanner.next();
+            int num = m.charAt(0); // String-> char -> 정수형
+
+            switch(num) { //char 로 받은 정수형 값 정리
+            case 65: 
+                num = 4; 
+                break;
+            case 66: 
+                num = 3; 
+                break;
+            case 67:
+                num = 2;
+                break;
+            case 68: 
+                num = 1; 
+                break;
+            case 70:
+                num = 0;
+                break;
+           default : 
+                break;
+       }
+           v.add(num);
+       }
+       int sum =0; // 합 sum
+       for(int i =0;i<v.size();i++) {
+           int n = v.elementAt(i);
+
+           sum = sum + n;
+       }
+       System.out.println((float)sum/v.size()); // 결과에 계산하여 출력
+
+
+    }
+}

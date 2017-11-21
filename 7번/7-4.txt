@@ -1,0 +1,61 @@
+7-4
+import java.util.*;
+class Student{
+	public String name;
+	public String acr;
+	public int num;
+	public double score;
+	public Student() {
+	} 
+}
+public class atob {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		ArrayList<Student> Stu = new ArrayList<Student>();
+		String stop = "그만"; // 초기값 지정
+		String line = null;
+		Student a[]=  new Student[4];
+		String st[] =new String[4];
+		System.out.println("학생 이름과, 학과, 학번, 학점평균 입력하세요");
+		for(int i =0;i<4;i++) {
+			a[i]= new Student();
+			System.out.print(">>");
+			String b=scanner.nextLine();
+			StringTokenizer tok = new StringTokenizer(b,",");//토큰으로 절단
+			int count =tok.countTokens();
+			for(int j=0;j<count;j++) {
+				st[j]=tok.nextToken();
+			}
+			int x = (int) Double.parseDouble(st[2]);
+			double y = Double.parseDouble(st[3]);
+			a[i].name=st[0]; //입력
+			a[i].acr=st[1];
+			a[i].num=x;
+			a[i].score=y;
+			Stu.add(a[i]);
+		}
+		for(int i =0;i<4;i++) {
+			System.out.println("----------------------------");
+			System.out.println("이름:" +Stu.get(i).name); //출력
+			System.out.println("학과:" +Stu.get(i).acr);
+			System.out.println("학번:" +Stu.get(i).num);
+			System.out.println("학점평균:" +Stu.get(i).score);
+		}
+		while(true) {
+			System.out.print("학생이름 >> ");
+			line = scanner.nextLine();
+			int c =0;
+			for(int i = 0;i<4;i++) {
+				if(Stu.get(i).name.equals(line)) {
+					System.out.println(line+","+Stu.get(i).acr+","+Stu.get(i).num+","+Stu.get(i).score);
+					c++;
+				}
+			}
+			if(c == 0)
+				System.out.println(line+"이라는 사람은 없습니다");
+			if(line.equals(stop)) // 그만 이면 멈춘다
+				break;
+			c=0;
+		}
+	}
+}
