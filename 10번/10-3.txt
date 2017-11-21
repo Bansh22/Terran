@@ -1,0 +1,40 @@
+10-3
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("Love Java");
+	public abc() {
+		setTitle("Left기로 문자열 이동");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(new FlowLayout()); //기본 배치
+		c.add(la);
+		la.addKeyListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,150);
+		setVisible(true);
+		la.setFocusable(true); // la 에 포커스
+		la.requestFocus();
+	}
+	class onoffListener implements KeyListener { //오버 라이딩
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode()==KeyEvent.VK_LEFT) { // 왼쪽일때 켜짐
+				JLabel a = (JLabel)e.getSource();
+				String o = a.getText();
+				String t = o.substring(0,1);
+				String th = o.substring(1);
+				String f = th+ t;
+				a.setText(f); //삽입
+			}
+			
+		}
+		public void keyReleased(KeyEvent arg0) {
+		}
+		public void keyTyped(KeyEvent arg0) {
+		}
+	}
+	public static void main(String[] args) {
+		new abc();
+	}
+}

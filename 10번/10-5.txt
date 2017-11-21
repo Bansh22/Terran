@@ -1,0 +1,47 @@
+10-5
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("c");
+	
+	public abc() {
+		setTitle("클릭 연습용 크로그램");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(null); //기본 배치
+		la.setLocation(100,100); //처음 라벨의 위치와 크기 설정
+		la.setSize(20,20);
+		c.add(la);
+		
+		la.addMouseListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,300);
+		setVisible(true);
+	}
+	class onoffListener implements MouseListener { //오버 라이딩
+		
+		public void mouseClicked(MouseEvent e) { // 누르면 실행
+			JLabel a = (JLabel)e.getSource();
+			int x = (int)(Math.random()*300);
+			int y = (int)(Math.random()*300);
+			a.setLocation(x,y);
+			
+		}
+		public void mouseEntered(MouseEvent e) {
+		
+		}
+		public void mouseExited(MouseEvent e) {
+			
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {			
+		}
+	}
+	
+	public static void main(String[] args) {
+		new abc();
+	}
+
+}

@@ -1,0 +1,44 @@
+10-4
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class abc extends JFrame{
+	public JLabel la = new JLabel ("Love Java");
+	
+	public abc() {
+		setTitle("+,-키로 폰트 크기 조절");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼을 누르면 닫히도록
+		Container c  = getContentPane();
+		c.setLayout(new FlowLayout()); //기본 배치
+		la.setFont(new Font("Arial",Font.PLAIN, 10)); // 기본 폰트
+		c.add(la);
+		la.addKeyListener(new onoffListener()); // 라벨에 모션 추가
+		setSize(300,150);
+		setVisible(true);
+		la.setFocusable(true); // la 에 포커스
+		la.requestFocus();
+	}
+	class onoffListener implements KeyListener { //오버 라이딩
+		public void keyPressed(KeyEvent e) {
+			JLabel a = (JLabel)e.getSource();
+			Font f = la.getFont();
+			int size =  f.getSize();
+			if(e.getKeyCode()==107) { // +일때 커짐
+				size= size+5;
+				a.setFont(new Font("Arial",Font.PLAIN, size));
+			}
+			if( (size>5) && (e.getKeyCode()==109)) { // - 일때 작아짐
+				size= size-5;
+				a.setFont(new Font("Arial",Font.PLAIN, size));
+			}
+		}
+		public void keyReleased(KeyEvent arg0) {
+		}
+		public void keyTyped(KeyEvent arg0) {
+		}
+	}
+	public static void main(String[] args) {
+		new abc();
+	}
+}
